@@ -12,20 +12,19 @@
 
 #include "CircusButton.h"
 
-CircusButton::CircusButton(uint8_t pin, byte uActiveLevel)
+CircusButton::CircusButton(uint8_t pin, byte uActiveLevel) : CircusButton(pin, uActiveLevel, _DEFAULT_TIME_KEY_POLLING_uS, _DEFAULT_TIME_KEY_REPEAT_START_uS, _DEFAULT_TIME_KEY_REPEAT_WORK_uS)
 {
-    CircusButton(pin, uActiveLevel, _DEFAULT_TIME_KEY_POLLING_uS, _DEFAULT_TIME_KEY_REPEAT_START_uS, _DEFAULT_TIME_KEY_REPEAT_WORK_uS);
 }
 
 CircusButton::CircusButton(uint8_t pin, byte uActiveLevel, uint32_t timeKeyRepeatStart_us, uint32_t timeKeyRepeatWork_us)
+    : CircusButton(pin, uActiveLevel, _DEFAULT_TIME_KEY_POLLING_uS, timeKeyRepeatStart_us, timeKeyRepeatWork_us)
 {
-    CircusButton(pin, uActiveLevel, _DEFAULT_TIME_KEY_POLLING_uS, timeKeyRepeatStart_us, timeKeyRepeatWork_us);
 }
 
 CircusButton::CircusButton(uint8_t pin, byte uActiveLevel, uint32_t timeKeyPolling_us, uint32_t timeKeyRepeatStart_us, uint32_t timeKeyRepeatWork_us)
 {
     this->pin = pin;
-    // pinMode(pin, INPUT_PULLUP);
+    pinMode(pin, INPUT_PULLUP);
     Init_Polling_Button(uActiveLevel);
     this->timeKeyPolling_us     = timeKeyPolling_us;
     this->timeKeyRepeatStart_us = timeKeyRepeatStart_us;
@@ -83,7 +82,7 @@ void CircusButton::Polling_Button_Repeat()
         if (!pTag.bEnableRepeat) {
             pTag.dwTimeSlot_Repeat = dwTime;
             pTag.dwOrgtTime        = dwTime;
-            pTag.dwRepeatTime      = timeKeyRepeatStart_us;
+            pTag.dwRepeatTime      = this->timeKeyRepeatStart_us;
             pTag.bEnableRepeat     = true;
             pTag.uRepeatCount      = 0;
             this->btn_state        = _KEYCODE_F_EDGE;
@@ -91,7 +90,7 @@ void CircusButton::Polling_Button_Repeat()
         } else {
             if ((dwTime - pTag.dwTimeSlot_Repeat) > pTag.dwRepeatTime) {
                 pTag.dwTimeSlot_Repeat = dwTime;
-                pTag.dwRepeatTime      = timeKeyRepeatWork_us;
+                pTag.dwRepeatTime      = this->timeKeyRepeatWork_us;
                 pTag.uRepeatCount++;
                 this->btn_state = _KEYCODE_REPEAT;
                 return;     // Repeat Trigger.
@@ -136,6 +135,6 @@ bool CircusButton::readRawLevel()
 // Polling
 void CircusButton::loop()
 {
-    this->pTag.bFlag = digitalRead(this->pin);
+    this->pTag.bFlag = (bool)digitalRead(this->pin);
     this->Polling_Button_Repeat();
 }
