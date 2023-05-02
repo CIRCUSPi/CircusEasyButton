@@ -1,4 +1,5 @@
 # **CircusEasyButton**
+CircusEasyButton 是一個輕量級且高效率的按鈕控制 Library。該 Library 提供了低延遲且高效率的判斷方法，同時占用極低的運算資源。除此之外，該 Library 還提供了多種按鈕觸發模式，可依據使用者需求進行選擇。使用 CircusEasyButton 可以大大簡化程式碼，提高程式碼的可讀性。如果你需要一個輕量、高效、可定制化的按鈕控制 Library，CircusEasyButton 是一個不錯的選擇。
 ## **使用方式**
 
 ---
