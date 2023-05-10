@@ -11,8 +11,8 @@
 //***************************************************************************************
 
 #include "Arduino.h"
-#ifndef _CIRCUS_UART_H
-#define _CIRCUS_UART_H
+#ifndef _CIRCUS_BUTTON_H
+#define _CIRCUS_BUTTON_H
 
 #define _DEFAULT_TIME_KEY_POLLING_uS 50000UL
 #define _DEFAULT_TIME_KEY_REPEAT_START_uS 1000000UL
