@@ -17,23 +17,23 @@ void loop()
     buttonA.loop();
     buttonB.loop();
 
-    if (buttonA.readState() == _KEYCODE_F_EDGE) {
-        Serial.println("A _KEYCODE_F_EDGE");
-    } else if (buttonA.readState() == _KEYCODE_REPEAT) {
-        Serial.println("A _KEYCODE_REPEAT");
-    } else if (buttonA.readState() == _KEYCODE_PRESSED) {
-        Serial.println("A _KEYCODE_PRESSED");
-    } else if (buttonA.readState() == _KEYCODE_R_EDGE) {
-        Serial.println("A _KEYCODE_R_EDGE");
+    if (buttonA.readState() == BTN_STATE::F_EDGE) {
+        Serial.println("A F_EDGE");
+    } else if (buttonA.readState() == BTN_STATE::REPEAT) {
+        Serial.println("A REPEAT");
+    } else if (buttonA.readState() == BTN_STATE::PRESSED) {
+        Serial.println("A PRESSED");
+    } else if (buttonA.readState() == BTN_STATE::R_EDGE) {
+        Serial.println("A R_EDGE");
     }
 
-    if (buttonB.readState() == _KEYCODE_F_EDGE) {
-        Serial.println("B _KEYCODE_F_EDGE");
-    } else if (buttonB.readState() == _KEYCODE_REPEAT) {
-        Serial.println("B _KEYCODE_REPEAT");
-    } else if (buttonB.readState() == _KEYCODE_PRESSED) {
-        Serial.println("B _KEYCODE_PRESSED");
-    } else if (buttonB.readState() == _KEYCODE_R_EDGE) {
-        Serial.println("B _KEYCODE_R_EDGE");
+    if (buttonB.readState() == BTN_STATE::F_EDGE) {
+        Serial.println("B F_EDGE");
+    } else if (buttonB.readState() == BTN_STATE::REPEAT) {
+        Serial.println("B REPEAT");
+    } else if (buttonB.readState() == BTN_STATE::PRESSED) {
+        Serial.println("B PRESSED");
+    } else if (buttonB.readState() == BTN_STATE::R_EDGE) {
+        Serial.println("B R_EDGE");
     }
 }

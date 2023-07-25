@@ -31,20 +31,20 @@ typedef struct {
     bool     bFlag;
 } KEY_POLLING_T;
 
-typedef enum
+enum class BTN_STATE
 {
-    _KEYCODE_NOKEY,
-    _KEYCODE_F_EDGE,
-    _KEYCODE_REPEAT,
-    _KEYCODE_PRESSED,
-    _KEYCODE_R_EDGE,
-} BTN_STATE_E;
+    NOKEY,
+    F_EDGE,
+    REPEAT,
+    PRESSED,
+    R_EDGE,
+};
 
 class CircusButton {
   private:
     uint8_t       pin;
     KEY_POLLING_T pTag;
-    BTN_STATE_E   btn_state;
+    BTN_STATE     btn_state;
     uint32_t      timeKeyPolling_us;
     uint32_t      timeKeyRepeatStart_us;
     uint32_t      timeKeyRepeatWork_us;
@@ -62,7 +62,7 @@ class CircusButton {
     bool SetTKeyRepeatStart(uint32_t timeKeyRepeatStart_us);
     bool SetTKeyRepeatWork(uint32_t timeKeyRepeatWork_us);
 
-    BTN_STATE_E readState();
+    BTN_STATE readState();
     // 取得此按鈕當前邏輯狀態
     bool readRawLevel();
     // Polling

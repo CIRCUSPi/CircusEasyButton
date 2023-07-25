@@ -58,7 +58,7 @@ void CircusButton::Polling_Button_Repeat()
     // Check if it is time to do Polling-Key
     uint32_t dwTime = micros();
     if ((dwTime - pTag.dwTimeSlot_Polling) < this->timeKeyPolling_us) {
-        this->btn_state = _KEYCODE_NOKEY;
+        this->btn_state = BTN_STATE::NOKEY;
         return;     // No-Key, time is not up
     }
 
@@ -71,13 +71,13 @@ void CircusButton::Polling_Button_Repeat()
 
         if (pTag.bEnableRepeat) {
             pTag.bEnableRepeat = false;
-            this->btn_state    = _KEYCODE_R_EDGE;
+            this->btn_state    = BTN_STATE::R_EDGE;
             return;     // Rear-Edge Trigger.
         } else {
-            this->btn_state = _KEYCODE_NOKEY;
+            this->btn_state = BTN_STATE::NOKEY;
             return;     // No-Key, key is not pressed.
         }
-    } else {     // Key was pressed
+    } else {            // Key was pressed
         pTag.bPressKey = true;
         if (!pTag.bEnableRepeat) {
             pTag.dwTimeSlot_Repeat = dwTime;
@@ -85,17 +85,17 @@ void CircusButton::Polling_Button_Repeat()
             pTag.dwRepeatTime      = this->timeKeyRepeatStart_us;
             pTag.bEnableRepeat     = true;
             pTag.uRepeatCount      = 0;
-            this->btn_state        = _KEYCODE_F_EDGE;
+            this->btn_state        = BTN_STATE::F_EDGE;
             return;     // Front-Edge Trigger.
         } else {
             if ((dwTime - pTag.dwTimeSlot_Repeat) > pTag.dwRepeatTime) {
                 pTag.dwTimeSlot_Repeat = dwTime;
                 pTag.dwRepeatTime      = this->timeKeyRepeatWork_us;
                 pTag.uRepeatCount++;
-                this->btn_state = _KEYCODE_REPEAT;
+                this->btn_state = BTN_STATE::REPEAT;
                 return;     // Repeat Trigger.
             } else {
-                this->btn_state = _KEYCODE_PRESSED;
+                this->btn_state = BTN_STATE::PRESSED;
                 return;     // Key still Pressed.
             }
         }
@@ -121,7 +121,7 @@ bool CircusButton::SetTKeyRepeatWork(uint32_t timeKeyRepeatWork_us)
     this->timeKeyRepeatWork_us = timeKeyRepeatWork_us;
 }
 
-BTN_STATE_E CircusButton::readState()
+BTN_STATE CircusButton::readState()
 {
     return this->btn_state;
 }
