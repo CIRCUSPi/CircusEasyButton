@@ -106,17 +106,17 @@ CircusButton::~CircusButton()
 {
 }
 
-bool CircusButton::SetTKeyPolling(uint32_t timeKeyPolling_us)
+void CircusButton::SetTKeyPolling(uint32_t timeKeyPolling_us)
 {
     this->timeKeyPolling_us = timeKeyPolling_us;
 }
 
-bool CircusButton::SetTKeyRepeatStart(uint32_t timeKeyRepeatStart_us)
+void CircusButton::SetTKeyRepeatStart(uint32_t timeKeyRepeatStart_us)
 {
     this->timeKeyRepeatStart_us = timeKeyRepeatStart_us;
 }
 
-bool CircusButton::SetTKeyRepeatWork(uint32_t timeKeyRepeatWork_us)
+void CircusButton::SetTKeyRepeatWork(uint32_t timeKeyRepeatWork_us)
 {
     this->timeKeyRepeatWork_us = timeKeyRepeatWork_us;
 }

@@ -58,9 +58,9 @@ class CircusButton {
     CircusButton(uint8_t pin, byte uActiveLevel, uint32_t timeKeyRepeatStart_us, uint32_t timeKeyRepeatWork_us);
     CircusButton(uint8_t pin, byte uActiveLevel, uint32_t timeKeyPolling_us, uint32_t timeKeyRepeatStart_us, uint32_t timeKeyRepeatWork_us);
     ~CircusButton();
-    bool SetTKeyPolling(uint32_t timeKeyPolling_us);
-    bool SetTKeyRepeatStart(uint32_t timeKeyRepeatStart_us);
-    bool SetTKeyRepeatWork(uint32_t timeKeyRepeatWork_us);
+    void SetTKeyPolling(uint32_t timeKeyPolling_us);
+    void SetTKeyRepeatStart(uint32_t timeKeyRepeatStart_us);
+    void SetTKeyRepeatWork(uint32_t timeKeyRepeatWork_us);
 
     BTN_STATE readState();
     // 取得此按鈕當前邏輯狀態
